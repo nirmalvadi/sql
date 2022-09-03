@@ -9,11 +9,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @SpringBootApplication
 public class DemoApplication {
+    
+    @Autowired
+	private ConsentRepositry consentRepositry;
 
     @RequestMapping("/")
     String home() {
         return "Hello World!";
     }
+    
+    @GetMapping(value= "/{id}", produces = "application/json")
+	public List<Consent> getConsent(@PathVariable("id") String id) {
+		
+		System.out.println("call database!!!! ");
+		//Optional<Consent> entity = consentRepositry.findById("1");
+		List<Consent> consent = consentRepositry.findAll();
+		
+		
+		return consent;
+		
+	}
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
