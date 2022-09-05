@@ -11,7 +11,7 @@ public class ApplicationBeans {
    public ApplicationBeans(Environment environment) {
       
       String property = "java.security.auth.login.config";
-      System.getProperties().setProperty(property, "/etc/jaas.conf");
+      System.getProperties().setProperty(property, "c:/nirmal/kerberos/jaas.conf");
       
       String property1 = "sun.security.krb5.debug";
       System.getProperties().setProperty(property1, "false");

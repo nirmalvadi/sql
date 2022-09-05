@@ -18,6 +18,8 @@ RUN pwd
 
 COPY krb5.conf .
 
+COPY krb5.ini .
+
 COPY krb5.keytab .
 
 COPY jaas.conf .
@@ -35,10 +37,11 @@ RUN pwd
 
 COPY --from=0 /build/target/demo-0.0.1-SNAPSHOT.jar /app/target/demo-0.0.1-SNAPSHOT.jar
 COPY --from=0 /build/krb5.conf /etc/krb5.conf
+COPY --from=0 /build/krb5.ini /etc/krb5.ini
 
 COPY --from=0 /build/krb5.keytab /etc/krb5.keytab
 
 COPY --from=0 /build/jaas.conf /etc/jaas.conf
 
 EXPOSE 8081
-ENTRYPOINT [ "java", "-jar", "/app/target/demo-0.0.1-SNAPSHOT.jar", "--server.port=8081" , "-Djava.security.auth.login.config=/etc/jaas.conf" ]
+ENTRYPOINT [ "java", "-Djava.security.krb5.conf=/etc/krb5.ini", "-jar", "/app/target/demo-0.0.1-SNAPSHOT.jar", "--server.port=8081"  ]
