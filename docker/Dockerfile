@@ -41,4 +41,4 @@ COPY --from=0 /build/krb5.keytab /etc/krb5.keytab
 COPY --from=0 /build/jaas.conf /etc/jaas.conf
 
 EXPOSE 8081
-ENTRYPOINT [ "java", "-jar", "/app/target/demo-0.0.1-SNAPSHOT.jar", "--server.port=8081" ]
+ENTRYPOINT [ "java", "-jar", "/app/target/demo-0.0.1-SNAPSHOT.jar", "--server.port=8081" , "-Djava.security.auth.login.config=/etc/jaas.conf" ]

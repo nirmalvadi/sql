@@ -14,7 +14,7 @@ public class ApplicationBeans {
       System.getProperties().setProperty(property, "/etc/jaas.conf");
       
       String property1 = "sun.security.krb5.debug";
-      System.getProperties().setProperty(property1, "true");
+      System.getProperties().setProperty(property1, "false");
       
       String property2 = "javax.security.auth.useSubjectCredsOnly";
       System.getProperties().setProperty(property2, "true");
