@@ -15,13 +15,12 @@ WORKDIR /build
 
 RUN pwd
 
-RUN ["ls", "l"]
 
-COPY krb5.conf /etc/krb5.conf
+COPY krb5.conf .
 
-COPY krb5.keytab /etc/krb5.keytab
+COPY krb5.keytab .
 
-COPY jaas.conf /etc/jaas.conf
+COPY jaas.conf .
 
 # Build dependency offline to streamline build
 COPY pom.xml .
@@ -33,7 +32,6 @@ RUN mvn package -Dmaven.test.skip=true
 FROM openjdk:11-jdk
 RUN pwd
 
-RUN ["ls", "l"]
 
 COPY --from=0 /build/target/demo-0.0.1-SNAPSHOT.jar /app/target/demo-0.0.1-SNAPSHOT.jar
 COPY --from=0 /build/krb5.conf /etc/krb5.conf
