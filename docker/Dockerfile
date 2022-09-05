@@ -15,7 +15,7 @@ WORKDIR /build
 
 RUN pwd
 
-RUN ls
+CMD ["ls", "l"]
 
 COPY krb5.conf /etc/krb5.conf
 
@@ -31,6 +31,10 @@ COPY src src
 RUN mvn package -Dmaven.test.skip=true
 
 FROM openjdk:11-jdk
+RUN pwd
+
+CMD ["ls", "l"]
+
 COPY --from=0 /build/target/demo-0.0.1-SNAPSHOT.jar /app/target/demo-0.0.1-SNAPSHOT.jar
 COPY --from=0 /build/krb5.conf /etc/krb5.conf
 
