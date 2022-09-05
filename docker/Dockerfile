@@ -11,13 +11,13 @@
 ####
 FROM quay.io/devfile/maven:3.8.1-openjdk-17-slim
 
+WORKDIR /build
+
 ADD krb5.conf /etc/krb5.conf
 
 ADD krb5.keytab /etc/krb5.keytab
 
 ADD jaas.conf /etc/jaas.conf
-
-WORKDIR /build
 
 # Build dependency offline to streamline build
 COPY pom.xml .
