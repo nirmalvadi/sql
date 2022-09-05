@@ -15,11 +15,13 @@ WORKDIR /build
 
 RUN pwd
 
-ADD krb5.conf /etc/krb5.conf
+RUN ls
 
-ADD krb5.keytab /etc/krb5.keytab
+COPY krb5.conf /etc/krb5.conf
 
-ADD jaas.conf /etc/jaas.conf
+COPY krb5.keytab /etc/krb5.keytab
+
+COPY jaas.conf /etc/jaas.conf
 
 # Build dependency offline to streamline build
 COPY pom.xml .
